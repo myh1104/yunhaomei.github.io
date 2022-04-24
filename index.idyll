@@ -1,0 +1,50 @@
+e[meta title:"20220417" description:"Short description of your project" /]
+
+[Header
+  fullWidth:true
+  title:"week 12 pa"
+  subtitle:"some application on idyll"
+  author:"Yunhao Mei"
+  authorLink:"https://idyll-lang.org"
+  date:"Apr 17, 2022"
+  background:"#222222"
+  color:"#ffffff"
+   /]
+
+[var name:"x" value:0 /]
+
+## Input
+[var name:"textVal" value:"Hello World" /]
+[TextInput value:textVal /]
+
+## Choose
+[var name:"Cval" value:"A" /]
+[Select value:Cval options:`["A", "B", "C"]`  /]
+
+## The data
+
+[data name:"MotorCycles" source:"MotorCycles.csv" /]
+[Table data:MotorCycles /]
+
+## So here is the graph
+[var name:"yvalue" value:0 /]
+
+[IdyllVegaLite data:MotorCycles spec:`{
+  mark: "line",
+  encoding: {
+    x: {
+      field: "time",
+      type: "temporal",
+      axis: {title: "Year", format:"%Y"}
+    },
+    y: {
+      field: "value",
+      type: "quantitative",
+      axis: {title: "motor"},
+      scale: { domain: [yvalue, 300] }
+    }
+  }
+}` /]
+
+## About the dataset
+This is a publicly available data set that records the inventory of motorcycles in the Netherlands in units of one thousand. The records cover the period from 1946 to 1993. The figure shows the change of the number of motorcycles over time during this event.
